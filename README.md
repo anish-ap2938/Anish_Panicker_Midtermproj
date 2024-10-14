@@ -39,5 +39,6 @@ Output:
 Frequent Itemsets: The program will print frequent itemsets identified by each algorithm.
 Association Rules: For each frequent itemset, the program will display the association rules along with their support and confidence values.
 Performance Comparison: At the end, the program compares the execution times of the three algorithms and identifies the fastest one.
+
 License:
 This project is developed for educational purposes and is part of a midterm assignment.
