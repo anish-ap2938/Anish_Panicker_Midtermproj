@@ -1,44 +1,89 @@
-Overview
-This project performs Market Basket Analysis using three different algorithms: Brute Force, Apriori, and FP-Growth to find frequent itemsets and generate association rules. The data consists of five transactional datasets, representing retail stores like Amazon, BestBuy, Kmart, Target, and Walmart. The project allows users to choose any dataset and analyze it based on user-defined support and confidence thresholds.
+# Market Basket Analysis: Frequent Itemset Mining & Association Rule Generation
 
-Files Included:
-anish_panicker_midtermproj.py: Python script for running the market basket analysis.
-Anish_Panicker_midtermproj.ipynb: Jupyter Notebook version of the analysis.
-Anish_Panicker_midtermproj.pdf: Project report documenting the implementation, results, and analysis.
-amazon_items.csv: Dataset containing transactions for Amazon.
-bestbuy_items.csv: Dataset containing transactions for BestBuy.
-kmart_items.csv: Dataset containing transactions for Kmart.
-target_items.csv: Dataset containing transactions for Target.
-walmart_items.csv: Dataset containing transactions for Walmart.
-How to Run:
-Install Required Packages: To run this project, you need to install the necessary packages:
+This project performs Market Basket Analysis on retail transaction datasets using three different algorithms to discover frequent itemsets and generate association rules. The implemented methods include a brute force approach, an Apriori algorithm, and an FP-Growth (FP-Tree) algorithm. All algorithms are compared in terms of output consistency and execution time.
 
-pip install pandas mlxtend
-Run the Python Script:
+---
 
-Open a terminal or command prompt and navigate to the directory containing the files.
-Run the following command to execute the Python script:
+## Project Overview
 
-python anish_panicker_midtermproj.py
-Choose a Dataset:
+The project is divided into four main parts:
 
-After running the script, you will be prompted to choose a dataset from the five available options (Amazon, BestBuy, Kmart, Target, Walmart).
-Enter a number (1-5) to select the desired dataset.
-Set Support and Confidence:
+1. **Data Creation:**  
+   - Create at least 10 common retail items (e.g., diapers, clothes, electronics) and form transactions from these items.  
+   - Build a transactional database with at least 20 transactions, and repeat this process to create four additional, distinct databases (totaling five datasets).  
+   - **Note:** The datasets are created deterministically (either manually or sourced with proper documentation) so that the results remain reproducible.
 
-The program will ask for a minimum support value (e.g., 0.2) and a minimum confidence value (e.g., 0.6).
-Input the desired values, and the program will proceed with the analysis.
-View Results:
+2. **Brute Force Frequent Itemset Generation:**  
+   - Enumerate all possible 1-itemsets, 2-itemsets, 3-itemsets, and so on until no further frequent itemsets are found based on a user-specified support threshold.
+   - Check each itemset's frequency against the dataset.
 
-The program will display frequent itemsets and association rules for the selected dataset using Brute Force, Apriori, and FP-Growth algorithms.
-It will also display the time taken for each algorithm and provide a comparison of their performance.
-Datasets:
-Each dataset (CSV file) contains 25 transactions with 10 unique items typically found in retail stores, such as electronics, groceries, furniture, and clothes. The dataset structure includes a column labeled Items, where each row represents a transaction consisting of multiple items.
+3. **Verification with Existing Implementations:**  
+   - Use an existing Apriori implementation from Python libraries to verify the results from the brute force method.
+   - Use a Python package for FP-Growth to generate frequent itemsets and association rules.
+   - Compare the association rules and execution times across the brute force, Apriori, and FP-Growth methods.
 
-Output:
-Frequent Itemsets: The program will print frequent itemsets identified by each algorithm.
-Association Rules: For each frequent itemset, the program will display the association rules along with their support and confidence values.
-Performance Comparison: At the end, the program compares the execution times of the three algorithms and identifies the fastest one.
+4. **User Interaction & Performance Evaluation:**  
+   - Prompt the user once to input the minimum support and confidence thresholds.
+   - Run all three algorithms on each of the five transactional datasets using these parameters.
+   - Display all generated association rules and report the execution time for each algorithm.
+   - Analyze whether all three algorithms produce the same results and determine which is faster under various support and confidence settings.
 
-License:
-This project is developed for educational purposes and is part of a midterm assignment.
+---
+
+## Data
+
+The project uses five generated CSV files representing transactions from different retail environments (e.g., Amazon, BestBuy, Kmart, Target, Walmart). Each CSV file contains at least 20 transactions with a deterministic structure to ensure reproducibility. The datasets include items typically found in supermarkets or retail stores, and the creation process is detailed in the project report.
+
+---
+
+## Implementation Details
+
+- **Brute Force Method:**  
+  - Enumerates all possible k-itemsets (for k = 1, 2, 3, ...) and checks their frequency.
+  - Terminates when no frequent (k+1)-itemsets can be found.
+  
+- **Apriori Algorithm:**  
+  - Uses a Python library implementation to efficiently generate frequent itemsets by leveraging the Apriori principle, which prunes the search space by eliminating infrequent itemsets early.
+
+- **FP-Growth Algorithm:**  
+  - Utilizes an FP-Tree based Python package to generate frequent itemsets without the need for candidate generation.
+  
+- **User-Defined Parameters:**  
+  - The minimum support and confidence values are input by the user once and reused across all algorithms.
+  - Multiple sets of support and confidence values are tested to demonstrate their impact on the generated association rules and performance.
+
+- **Performance Metrics:**  
+  - The output includes all discovered frequent itemsets and association rules along with their support and confidence.
+  - Execution time for each algorithm is measured and compared.
+
+---
+
+## Output
+
+- **Frequent Itemsets & Association Rules:**  
+  - The program prints all frequent itemsets and the corresponding association rules for each dataset.
+  - Each rule displays the support and confidence values.
+  
+- **Performance Comparison:**  
+  - Execution times for the brute force, Apriori, and FP-Growth methods are reported.
+  - The project analyzes whether the three algorithms yield the same results and identifies which one is faster under different parameter settings.
+
+---
+
+## Files Included
+
+- `anish_panicker_midtermproj.py`: Python script for running the market basket analysis.
+- `Anish_Panicker_midtermproj.ipynb`: Jupyter Notebook version of the analysis.
+- `Anish_Panicker_midtermproj.pdf`: Project report documenting the implementation, results, and analysis.
+- Datasets (CSV files):
+  - `amazon_items.csv`
+  - `bestbuy_items.csv`
+  - `kmart_items.csv`
+  - `target_items.csv`
+  - `walmart_items.csv`
+
+---
+
+## License
+
+This project is developed for educational purposes as part of a midterm assignment. All code and data are provided for academic use only.
